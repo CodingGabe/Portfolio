@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <title>Learning JQuery</title>
+
+    <!--Standard format for homepage -->
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <!--JavaScript -->
+    <script type="text/javascript" src="jquery.min.js"></script>
+ 
+</head>
+
+<body>
+
+    <div id="circle"><p>Click me and watch the Squares disappear!</p></div>
+
+    <div class="square"></div>
+
+    <div class="square"></div>
+
+    <h1>Click the button below to see some cool stuff!</h1>
+
+    <button id="fader">Fade Out</button>
+
+    <button id="faderIn">Fade In</button>
+
+    <div id="blue"><p>Click me to see some dank memes</p></div>
+
+    <a href="validate.html" /> Form Validation Project! </a>
+
+    <br />
+
+    <a href="jQueryUI.html" /> Intro to jQueryUI </a>
+
+    <script>
+
+        $("#circle").click(function() {
+
+            $(".square").fadeOut();
+
+        });
+
+        $("#fader").click(function() {
+
+            $("h1").fadeOut('slow');
+
+        });
+
+         $("#faderIn").click(function() {
+
+            $("h1").fadeIn('slow');
+
+        });
+
+         $("#blue").click(function() {
+
+            $(this).animate({
+                width:"300px",
+                height:"300px",
+                borderRadius:"150px",
+                marginLeft:"100px",
+                marginTop:"100px",
+                },1500);
+
+        });
+
+
+    </script>
+ 
+
+</body>
+</html>

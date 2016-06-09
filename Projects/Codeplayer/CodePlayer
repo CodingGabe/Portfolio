@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+    <title>Gabes CodePlayer</title>
+
+    <!--Standard format for homepage -->
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google fonts for some swag -->
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+    <!--JavaScript -->
+    <script type="text/javascript" src="jquery.min.js"></script>
+
+    <style type="text/css">
+
+    #menuBar {
+        width: 100%;
+        height: 40px;
+        background-color: #53c653;
+        border-bottom: 1px solid gray;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #logo {
+        font-family: 'Lobster', cursive;
+        color: black;
+        padding: 5px 0 0 20px;
+        font-weight: bold;
+        font-size: 120%;
+        float: left;
+    }
+
+    #btnDiv {
+        float: right;
+        padding: 7px 10px 0 0;
+    }
+
+    #runbtn {
+        font-size: 15px;
+    }
+
+    #toggles {
+        width: 189px;
+        margin: 0 auto;
+        list-style: none;
+        border: 1px solid gray;
+        border-radius: 3px;
+        height: 27px;
+        padding: 0;
+        position: relative;
+        top: 5px;
+    }
+
+    #toggles li {
+        float: left;
+        border-right: 1px solid gray;
+        padding: 5px 7px;
+
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .codeContainer {
+        background-color: #336699;
+        height: 100%;
+        width: 50%;
+        float: left;
+        position: relative;
+    }
+
+    .codeContainer textarea {
+        width: 96.5%;
+        height: 80%;
+        border-width: 5px;
+        border-style: ridge;
+        font-family: monotype;
+        font-size: 17px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .codeLabel {
+        position: absolute;
+        right:27px;
+        top:10px;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    #CSSContainer, #JSContainer {
+        display: none;
+    }
+
+    iframe {
+        height: 100%;
+        position: relative;
+        left: 20px;
+        border: none;
+    }
+
+    .selected {
+        background-color: #006600;
+
+    }
+
+    </style>
+ 
+</head>
+
+<body>
+
+ <div id="wrapper">
+
+    <div id="menuBar">
+
+        <div id="logo">
+
+            Gabe's pretty dope CodePlayer
+
+        </div>
+
+        <div id="btnDiv">
+
+            <button id='runbtn'>Execute</button>
+
+        </div>
+
+        <ul id="toggles">
+
+            <li class="toggle selected">HTML</li>
+            <li class="toggle">CSS</li>
+            <li class="toggle">JS</li>
+            <li style="border:none"class="toggle selected">Result</li>
+
+        </ul>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="codeContainer" id="HTMLContainer">
+
+        <div class="codeLabel">HTML</div>
+
+        <textarea  id="htmlCode" placeholder="Write code here"></textarea>
+
+
+
+    </div>
+
+        <div class="codeContainer" id="CSSContainer">
+
+        <div class="codeLabel">CSS</div>
+
+        <textarea id="cssCode" placeholder="Write code here"></textarea>
+
+
+
+    </div>
+
+        <div class="codeContainer" id="JSContainer">
+
+        <div class="codeLabel">JS</div>
+
+        <textarea id="jsCode" placeholder="Write code here"></textarea>
+
+
+
+    </div>
+
+        </div>
+
+        <div class="codeContainer" id="resultContainer">
+
+        <div class="codeLabel">Result</div>
+
+        <iframe id="resultframe"></iframe>
+
+
+
+    </div>
+
+     
+
+
+
+ </div>
+
+
+    <script>
+
+        var windowHeight=$(window).height();
+        var menuBarHeight=$("#menuBar").height();
+
+        var codeContainerHeight=windowHeight-menuBarHeight;
+
+        $(".codeContainer").height(codeContainerHeight + "px");
+
+        $(".toggle").click(function() {
+
+            $(this).toggleClass("selected");
+
+            var activeDiv=$(this).html();
+
+            $("#"+activeDiv+"Container").toggle();
+
+            var showingDivs=$(".codeContainer").filter(function() {
+
+                return($(this).css("display") !="none");
+
+
+            }).length;
+
+            var width=100/showingDivs;
+
+            $(".codeContainer").css("width", width+"%");
+
+
+        });
+
+        $("#runbtn").click(function() {
+
+            $("iframe").contents().find("html").html('<style>'+$("#cssCode").val()+'</style>'+$("#htmlCode").val());
+
+        });
+
+
+    </script>
+ 
+
+</body>
+</html>

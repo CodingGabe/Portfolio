@@ -1,0 +1,160 @@
+<!-- Gabe's Reaction game -->
+<!doctype html>
+<html>
+<head>
+ <title>Gabe's Reaction Game</title>
+
+ <meta charset="utf-8" />
+ <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+ <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+
+	<style>
+
+		html { 
+  			background: url(water.jpg) no-repeat center center fixed; 
+  			-webkit-background-size: cover;
+  			-moz-background-size: cover;
+  			-o-background-size: cover;
+  			background-size: cover;
+		}
+
+ 		body {
+ 			font-family:Verdana, Geneva, sans-serif;
+ 			
+
+ 		}
+
+ 		#box {
+ 	 		width:0px;
+ 	 	 	height:0px;
+ 	 	 	background-color:red;
+ 	 	 	display:none;
+ 	 	 	position:relative;
+ 	 	 }
+
+ 	 	 .bold {
+ 	 	 	 font-weight:bold;
+ 	 	 }
+
+ 	 	 .center {
+ 	 	 	text-align: center;
+ 	 	 }
+
+ 	 	 h1 {
+ 	 	 	font-family: 'Permanent Marker', cursive;
+ 	 	 	color: #46BA3C;
+ 	 	 }
+
+ 	 	 .white {
+ 	 	 	color: white;
+ 	 	 }
+
+ 	 	 .border {
+ 	 	 	border: 5px solid #46BA3C ridge;
+ 	 	 }
+
+
+
+ 	 	 
+
+	</style>
+
+
+</head>
+
+<body>
+	
+	<h1 class="center">Catch the Green Shell!</h1>
+
+	<div class="border">
+		<p class="center white">Try and beat your time and catch the green shell.</p>
+
+ 		<p class="bold center white">Your time: <span id="time">0</span>s</p>
+ 	</div>
+
+ 
+ 	<div id="box"><img src="turtle.png"/></div>
+ 
+
+
+	<script type="text/javascript">
+
+		function getRandomColor() {
+ 	 	 	var letters = '0123456789ABCDEF'.split('');
+ 	 	 	var color = '#';
+ 	 	 	for (var i = 0; i < 6; i++ ) {
+ 	 	 		color += letters[Math.round(Math.random() * 15)];
+ 	 	 	}
+ 	 	 	return color;
+	 	 }
+			
+		var clickedTime; var createdTime; var reactionTime;
+
+		function makeBox() {
+	 	
+	 		var time=Math.random();
+	 	
+	 		time=time*3000;
+	 	
+			setTimeout(function() {
+				
+			if (Math.random()>0.5) {
+				
+					
+				document.getElementById("box").style.borderRadius="100px";
+					
+			} else {
+					
+					
+				document.getElementById("box").style.borderRadius="0";
+					
+					
+			}
+					
+			var top=Math.random();
+					
+			top=top*300;
+					
+			var left=Math.random();
+					
+			left=left*500;
+					
+			document.getElementById("box").style.top=top+"px";
+					
+			document.getElementById("box").style.left=left+"px";
+					
+			document.getElementById("box").style.backgroundColor=getRandomColor();
+			
+			document.getElementById("box").style.display="block";
+					
+			createdTime=Date.now();
+			
+		}, time);
+	 	
+		
+	}
+
+	document.getElementById("box").onclick=function() {
+	 	
+	 	 clickedTime=Date.now();
+		 	
+	 	 reactionTime=(clickedTime-createdTime)/1000;
+		 	
+	 	 document.getElementById("time").innerHTML=reactionTime;
+	 	
+	 	 this.style.display="none";
+	 	
+	 	 makeBox();
+	}
+	 	
+	makeBox();
+
+	</script>
+
+
+
+</body>
+</html>
+
